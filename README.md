@@ -1,7 +1,7 @@
 
 # Playwright UI Automation (JavaScript)
 
-This repository contains **focused Playwright test examples** using JavaScript.
+This repository contains **focused Playwright UI tests** using JavaScript.
 
 It is intentionally scoped to demonstrate:
 - Modern Playwright testing patterns
@@ -98,7 +98,7 @@ playwright-testing/
 │   └── workflows/
 │       └── tests.yml          # GitHub Actions CI/CD workflow
 ├── tests/
-│   ├── example.spec.ts        # Example test file
+│   ├── navigation.spec.ts     # Sample test
 │   └── fixtures/              # Shared test fixtures
 ├── playwright.config.ts       # Playwright configuration
 ├── package.json              # Project dependencies
@@ -111,11 +111,11 @@ playwright-testing/
 
 Tests should be placed in the `tests/` directory with `.spec.js` extension.
 
-Example test structure:
+Sample test structure:
 ```typescript
 import { test, expect } from '@playwright/test';
 
-test('example test', async ({ page }) => {
+test('navigation flow', async ({ page }) => {
   await page.goto('https://example.com');
   await expect(page).toHaveTitle(/Example/);
 });
