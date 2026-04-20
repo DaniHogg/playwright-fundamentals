@@ -23,6 +23,15 @@ including features that differ from traditional Selenium-based approaches:
 - First‑class CI support
 
 
+## Scope
+
+This repository intentionally does not introduce a full Page Object Model
+or shared framework abstraction.
+
+Its purpose is to show clean, readable Playwright tests.
+A production-style framework architecture is implemented separately.
+
+
 ## Prerequisites
 
 - Node.js 16+ installed
