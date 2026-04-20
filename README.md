@@ -1,6 +1,27 @@
-# Playwright Testing Project
 
-A comprehensive end-to-end testing project built with Playwright and JavaScript.
+# Playwright UI Automation (JavaScript)
+
+This repository contains **focused Playwright test examples** using JavaScript.
+
+It is intentionally scoped to demonstrate:
+- Modern Playwright testing patterns
+- Playwright‑specific locator strategies
+- Cross‑browser UI automation using the built‑in Playwright test runner
+
+> For a production‑ready, multi‑layer automation framework, see:
+> **qa-automation-template**
+
+
+## Why Playwright
+
+This project exists to demonstrate modern UI automation using Playwright,
+including features that differ from traditional Selenium-based approaches:
+
+- Built-in auto-waiting
+- Role‑ and text‑based locators
+- Parallel execution out of the box
+- First‑class CI support
+
 
 ## Prerequisites
 
