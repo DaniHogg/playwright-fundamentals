@@ -33,11 +33,9 @@ class TestGuildWars2WikiContentInteraction:
             # Click the first collapsible header
             collapsible_headers.first.click()
 
-            # Content should expand (this might take a moment)
-            page.wait_for_timeout(500)
-
             # The section should still be visible
             expect(collapsible_headers.first).to_be_visible()
+            expect(page.locator('#mw-content-text')).to_be_visible()
 
     def test_tabbed_content_navigation(self, page):
         """
@@ -125,8 +123,7 @@ class TestGuildWars2WikiContentInteraction:
             # Try changing a filter
             if filters.first.locator('option').count() > 1:
                 filters.first.select_option(index=1)
-                # Content should update
-                page.wait_for_timeout(1000)
+                page.wait_for_load_state('networkidle')
                 expect(page.locator('#mw-content-text')).to_be_visible()
 
     def test_dynamic_content_loading(self, page):
@@ -168,9 +165,6 @@ class TestGuildWars2WikiContentInteraction:
 
             # Look for tooltip (might be in different forms)
             tooltip = page.locator('.tooltip').or_(page.locator('[role="tooltip"]'))
-
-            # Tooltip might appear after a delay
-            page.wait_for_timeout(500)
 
             if tooltip.count() > 0:
                 expect(tooltip).to_be_visible()
