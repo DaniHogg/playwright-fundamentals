@@ -1,4 +1,5 @@
 const { test, expect } = require('@playwright/test');
+const { toSitePath } = require('./site-path');
 
 const pages = [
   ['/', /Daniel Hogg|QA Automation/i],
@@ -10,7 +11,7 @@ const pages = [
 test.describe('Site Smoke', () => {
   for (const [url, titlePattern] of pages) {
     test(`loads ${url}`, async ({ page }) => {
-      const response = await page.goto(url);
+      const response = await page.goto(toSitePath(url));
       expect(response && response.ok()).toBeTruthy();
       await expect(page).toHaveTitle(titlePattern);
       await expect(page.locator('nav.top-nav')).toBeVisible();

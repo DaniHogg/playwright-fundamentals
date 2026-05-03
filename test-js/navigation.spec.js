@@ -1,11 +1,12 @@
 const { test, expect } = require('@playwright/test');
+const { toSitePath } = require('./site-path');
 
 const targets = ['/', '/about.html', '/portfolio.html', '/dashboard.html'];
 
 test.describe('Primary Navigation', () => {
   for (const url of targets) {
     test(`nav links are visible on ${url}`, async ({ page }) => {
-      await page.goto(url);
+      await page.goto(toSitePath(url));
       const nav = page.locator('nav.top-nav');
       await expect(nav).toBeVisible();
       await expect(nav.getByRole('link', { name: 'About Me' })).toBeVisible();
@@ -15,7 +16,7 @@ test.describe('Primary Navigation', () => {
   }
 
   test('dashboard card links navigate to project detail pages', async ({ page }) => {
-    await page.goto('/dashboard.html');
+    await page.goto(toSitePath('/dashboard.html'));
     const firstDetails = page.getByRole('link', { name: 'View details' }).first();
     await expect(firstDetails).toBeVisible();
     await firstDetails.click();

@@ -37,8 +37,8 @@ jobs:
 
       - name: Run Playwright JS tests
         env:
-          # Tests target the live portfolio site; BASE_URL can be overridden locally
-          BASE_URL: https://danihogg.github.io/qa-portfolio-livesite
+          BASE_URL: https://danihogg.github.io
+          SITE_BASE_PATH: /qa-portfolio-livesite
         run: npm test
 
       - name: Set up Python
