@@ -52,17 +52,9 @@ jobs:
 
       - name: Run Playwright Python tests
         env:
-          BASE_URL: https://danihogg.github.io/qa-portfolio-livesite
-        run: |
-          set +e
-          pytest test-py -v
-          rc=$?
-          set -e
-          if [ "$rc" -eq 5 ]; then
-            echo "No pytest-discoverable tests found in test-py (exit code 5); continuing."
-            exit 0
-          fi
-          exit "$rc"
+          BASE_URL: https://danihogg.github.io
+          SITE_BASE_PATH: /qa-portfolio-livesite
+        run: pytest test-py -v
 
       - name: Upload HTML report
         uses: actions/upload-artifact@v4
