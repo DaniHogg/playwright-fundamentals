@@ -39,7 +39,9 @@ jobs:
         env:
           BASE_URL: https://danihogg.github.io
           SITE_BASE_PATH: /qa-portfolio-livesite
-        run: npm test
+          PLAYWRIGHT_JSON_OUTPUT_NAME: results.json
+          PLAYWRIGHT_JSON_OUTPUT_DIR: playwright-report
+        run: npx playwright test --reporter=list,html,json
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -62,6 +64,15 @@ jobs:
         with:
           name: html-report
           path: playwright-report/
+          retention-days: 14
+
+      - name: Upload Playwright JSON report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-json
+          path: playwright-report/results.json
+          if-no-files-found: error
           retention-days: 14
 
   notify-portfolio:
@@ -88,6 +99,7 @@ jobs:
             "client_payload": {
               "source_repo": "${{ github.repository }}",
               "source_workflow": "tests.yml",
+              "source_artifact": "playwright-json",
               "source_branch": "${{ github.ref_name }}",
               "source_run_id": "${{ github.run_id }}",
               "source_run_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}",
