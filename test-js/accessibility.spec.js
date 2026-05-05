@@ -15,4 +15,13 @@ test.describe('Accessibility Baseline', () => {
     await expect(page.getByRole('link', { name: /View Automation Projects/i }).first()).toBeVisible();
     await expect(page.getByRole('link', { name: /Open Test Results/i }).first()).toBeVisible();
   });
+
+  for (const path of ['/about.html', '/portfolio.html', '/dashboard.html']) {
+    test(`secondary page has lang attribute and landmarks (${path})`, async ({ page }) => {
+      await page.goto(toSitePath(path));
+      await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+      await expect(page.locator('main.shell')).toBeVisible();
+      await expect(page.locator('nav[aria-label="Primary"]')).toBeVisible();
+    });
+  }
 });

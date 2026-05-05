@@ -1,3 +1,4 @@
+import pytest
 from playwright.sync_api import expect
 
 
@@ -12,3 +13,10 @@ class TestAccessibility:
         page.goto(to_site_path("/"))
         expect(page.get_by_role("link", name="View Automation Projects").first).to_be_visible()
         expect(page.get_by_role("link", name="Open Test Results").first).to_be_visible()
+
+    @pytest.mark.parametrize("path", ["/about.html", "/portfolio.html", "/dashboard.html"])
+    def test_secondary_pages_have_lang_and_landmarks(self, page, to_site_path, path):
+        page.goto(to_site_path(path))
+        expect(page.locator("html")).to_have_attribute("lang", "en")
+        expect(page.locator("main.shell")).to_be_visible()
+        expect(page.locator('nav[aria-label="Primary"]')).to_be_visible()
