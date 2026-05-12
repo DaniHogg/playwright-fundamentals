@@ -1,12 +1,13 @@
 
-# Playwright UI Automation (JavaScript)
+# Playwright UI Automation
 
-This repository contains **focused Playwright UI tests** using JavaScript.
+This repository contains **focused Playwright UI tests** in both JavaScript and Python.
 
 It is intentionally scoped to demonstrate:
 - Modern Playwright testing patterns
-- Playwright‑specific locator strategies
-- Cross‑browser UI automation using the built‑in Playwright test runner
+- Playwright-specific locator strategies
+- Cross-browser UI automation using the built-in Playwright test runner
+- How the same target can be exercised from JS and Python test suites
 
 > For a production‑ready, multi‑layer automation framework, see:
 > **qa-automation-template**
@@ -25,8 +26,7 @@ including features that differ from traditional Selenium-based approaches:
 
 ## Scope
 
-This repository intentionally does not introduce a full Page Object Model
-or shared framework abstraction.
+This repository intentionally keeps the JS and Python suites separate so each language sample stays easy to review.
 
 Its purpose is to show clean, readable Playwright tests.
 A production-style framework architecture is implemented separately.
@@ -34,7 +34,8 @@ A production-style framework architecture is implemented separately.
 
 ## Prerequisites
 
-- Node.js 16+ installed
+- Node.js 18+ installed for the JavaScript suite
+- Python 3.11+ installed for the Python suite
 - npm or yarn package manager
 
 ## Installation
@@ -47,6 +48,11 @@ npm install
 2. Install Playwright browsers:
 ```bash
 npx playwright install
+```
+
+3. Install Python test dependencies if you plan to run the Python suite:
+```bash
+python -m pip install -r requirements.txt
 ```
 
 ## Running Tests
