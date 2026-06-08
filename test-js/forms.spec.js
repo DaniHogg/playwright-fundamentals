@@ -12,4 +12,20 @@ test.describe('URL Input And Query Handling', () => {
     await page.goto(toSitePath('/project.html'));
     await expect(page.locator('#project-title')).toContainText(/Missing project id/i);
   });
+
+  test('project route exposes coverage audit evidence for valid project', async ({ page }) => {
+    await page.goto(toSitePath('/project.html?project=qa-automation-template'));
+
+    const coverageLink = page.locator('#coverage-link');
+    await expect(coverageLink).toHaveAttribute(
+      'href',
+      /data\/projects\/qa-automation-template\/coverage-audit\.json$/,
+    );
+    await expect(page.locator('#coverage-summary .card').first()).toBeVisible();
+  });
+
+  test('invalid project id shows fetch failure state', async ({ page }) => {
+    await page.goto(toSitePath('/project.html?project=does-not-exist'));
+    await expect(page.locator('#project-title')).toContainText(/Failed to fetch/i);
+  });
 });

@@ -1,4 +1,4 @@
-const SITE_BASE_PATH = (process.env.SITE_BASE_PATH || '').replace(/\/+$/, '');
+const SITE_BASE_PATH = (process.env.SITE_BASE_PATH || '/qa-portfolio-livesite').replace(/\/+$/, '');
 
 function toSitePath(pathname = '/') {
   const path = pathname.startsWith('/') ? pathname : `/${pathname}`;
