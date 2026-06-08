@@ -3,7 +3,7 @@
 
 This repository contains **focused Playwright UI tests** in both JavaScript and Python.
 
-It is intentionally scoped to demonstrate:
+It is scoped to demonstrate:
 - Modern Playwright testing patterns
 - Playwright-specific locator strategies
 - Cross-browser UI automation using the built-in Playwright test runner
@@ -28,8 +28,14 @@ including features that differ from traditional Selenium-based approaches:
 
 This repository intentionally keeps the JS and Python suites separate so each language sample stays easy to review.
 
-Its purpose is to show clean, readable Playwright tests.
-A production-style framework architecture is implemented separately.
+Its purpose is to show clean, readable Playwright tests that reviewers can assess quickly.
+A production-style multi-layer framework is implemented separately.
+
+## Portfolio And Team Reuse
+
+- Portfolio value: demonstrates modern Playwright usage with clear intent in JS and Python
+- Team value: provides reusable examples for route handling, page checks, and CI execution
+- Adaptation path: update `BASE_URL` and `SITE_BASE_PATH` in CI/local env to target another site
 
 
 ## Prerequisites
@@ -99,23 +105,28 @@ npm run codegen
 ## Project Structure
 
 ```
-playwright-testing/
+Playwright/
 ├── .github/
 │   └── workflows/
 │       └── tests.yml          # GitHub Actions CI/CD workflow
-├── tests/
-│   ├── navigation.spec.ts     # Sample test
-│   └── fixtures/              # Shared test fixtures
-├── playwright.config.ts       # Playwright configuration
-├── package.json              # Project dependencies
-├── tsconfig.json             # TypeScript configuration
-├── README.md                 # Project documentation
-└── .gitignore               # Git ignore rules
+├── test-js/                  # JavaScript Playwright specs
+│   ├── forms.spec.js
+│   ├── navigation.spec.js
+│   └── site-path.js          # GitHub Pages subpath helper
+├── test-py/                  # Python Playwright specs
+│   ├── conftest.py
+│   └── test_forms.py
+├── playwright.config.js      # Playwright JS runner config
+├── package.json              # Node dependencies and scripts
+├── requirements.txt          # Python dependencies
+├── pyrightconfig.json        # Python type checking config
+└── README.md
 ```
 
 ## Writing Tests
 
-Tests should be placed in the `tests/` directory with `.spec.js` extension.
+JavaScript specs live in `test-js/` with `.spec.js` filenames.
+Python specs live in `test-py/` with `test_*.py` filenames.
 
 Sample test structure:
 ```typescript
