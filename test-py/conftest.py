@@ -2,8 +2,8 @@ import os
 import pytest
 
 
-BASE_URL = os.environ.get("BASE_URL", "http://localhost:8090").rstrip("/")
-BASE_PATH = os.environ.get("SITE_BASE_PATH", "").rstrip("/")
+BASE_URL = os.environ.get("BASE_URL", "https://danihogg.github.io").rstrip("/")
+BASE_PATH = os.environ.get("SITE_BASE_PATH", "/qa-portfolio-livesite").rstrip("/")
 
 
 def site_path(path: str = "/") -> str:

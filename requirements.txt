@@ -1,3 +1,5 @@
 playwright>=1.58.0
 pytest>=9.0.0
 pytest-playwright>=0.7.0
+pytest-xdist>=3.6.0
+pytest-rerunfailures>=15.0

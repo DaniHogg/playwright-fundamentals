@@ -12,4 +12,4 @@ class TestBasicHomepage:
         page.goto(to_site_path("/"))
         strip = page.locator("#proof-strip")
         expect(strip).to_be_visible()
-        expect(strip).to_contain_text("Active projects")
+        expect(strip).to_contain_text(re.compile(r"Active projects?", re.I))

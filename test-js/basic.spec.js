@@ -14,6 +14,6 @@ test.describe('Portfolio Basic Checks', () => {
     await page.goto(toSitePath('/'));
     const strip = page.locator('#proof-strip');
     await expect(strip).toBeVisible();
-    await expect(strip).toContainText(/Passing|Failing|Active project/i);
+    await expect(strip).toContainText(/Active projects?/i);
   });
 });

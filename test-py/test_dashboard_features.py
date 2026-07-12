@@ -10,7 +10,10 @@ class TestDashboardEvidenceFeatures:
         expect(card.get_by_role("link", name="Workflow run")).to_be_visible()
 
     def test_proof_strip_has_tool_chips(self, page, to_site_path):
+        import re
         page.goto(to_site_path("/"))
         tools = page.locator("#proof-strip .tool-chip")
         expect(tools.first).to_be_visible()
-        expect(page.locator("#proof-strip")).to_contain_text("Playwright")
+        strip = page.locator("#proof-strip")
+        for tool in ("Playwright", "Selenium", "Pytest", "k6"):
+            expect(strip).to_contain_text(re.compile(tool, re.IGNORECASE))

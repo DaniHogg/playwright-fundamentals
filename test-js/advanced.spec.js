@@ -11,6 +11,9 @@ test.describe('Advanced Data Assertions', () => {
   test('coverage audit panel is populated', async ({ page }) => {
     await page.goto(toSitePath('/project.html?project=qa-automation-template'));
     await expect(page.locator('#coverage-summary .card').first()).toBeVisible();
-    await expect(page.locator('#coverage-link')).toHaveAttribute('href', /coverage-audit\.json/);
+    await expect(page.locator('#coverage-link')).toHaveAttribute(
+      'href',
+      'data/projects/qa-automation-template/coverage-audit.json',
+    );
   });
 });
